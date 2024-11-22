@@ -2,7 +2,7 @@ import { Car } from '../model/Car.js';
 import { InputView } from '../view/InputView.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { OutputView } from '../view/OutputView.js';
-import { validateCarNames } from '../utils/validation.js';
+import { validateCarNames, validateTryCount } from '../utils/validation.js';
 
 export class Controller {
   constructor() {
@@ -64,6 +64,7 @@ export class Controller {
 
   async getTryCount() {
     const tryCount = await this.inputView.getInput('시도할 횟수는 몇 회인가요?\n');
+    validateTryCount(tryCount);
 
     return tryCount;
   }
