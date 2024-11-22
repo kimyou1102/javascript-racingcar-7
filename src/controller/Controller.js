@@ -14,8 +14,16 @@ export class Controller {
     const carNames = carNamesInput.split(',');
     const cars = this.createCars(carNames);
     const tryCount = await inputView.getTryCount();
-
     this.runRace(cars, tryCount);
+    this.outputView.printWinners(winners);
+  }
+
+  findWinners(cars) {
+    const carsStep = cars.map((car) => car.getStep());
+    const max = Math.max(...carsStep);
+    const maxCars = cars.filter((car) => car.getStep() === max);
+
+    return maxCars.map((car) => car.getName());
   }
 
   runRace(cars, tryCount) {
