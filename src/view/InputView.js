@@ -9,6 +9,12 @@ export class InputView {
     return carNames;
   }
 
+  async getTryCount() {
+    const tryCount = await this.getInput('시도할 횟수는 몇 회인가요?');
+
+    return tryCount;
+  }
+
   async getInput(message) {
     try {
       return await Console.readLineAsync(message);
