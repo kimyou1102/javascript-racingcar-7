@@ -1,4 +1,4 @@
-import { validateCarNames } from '../src/utils/validation';
+import { validateCarNames, validateTryCount } from '../src/utils/validation';
 
 describe('자동차 이름 입력 예외처리 테스트', () => {
   test.each(['pobi*', '12354, ', '*&^'])(
@@ -16,5 +16,15 @@ describe('자동차 이름 입력 예외처리 테스트', () => {
     const CARNAMES = 'pobi,woni,pobi';
 
     expect(() => validateCarNames(CARNAMES)).toThrow('[ERROR]');
+  });
+});
+
+describe('시도할 횟수 입력 예외처리 테스트', () => {
+  test.each(['asdf', '*&^'])('숫자가 아닐 경우 예외가 발생한다.', (TRY_COUNT) => {
+    expect(() => validateTryCount(TRY_COUNT)).toThrow('[ERROR]');
+  });
+
+  test.each([-1, 0])('1미만일 경우 예외가 발생한다.', (TRY_COUNT) => {
+    expect(() => validateTryCount(TRY_COUNT)).toThrow('[ERROR]');
   });
 });
