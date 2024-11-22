@@ -2,9 +2,9 @@ export class Car {
   #name;
   #step;
 
-  constructor(name) {
+  constructor(name, step) {
     this.#name = name;
-    this.#step = 0;
+    this.#step = step;
   }
 
   getName() {
