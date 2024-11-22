@@ -6,15 +6,16 @@ import { OutputView } from '../view/OutputView.js';
 export class Controller {
   constructor() {
     this.outputView = new OutputView();
+    this.inputView = new InputView();
   }
 
   async start() {
-    const inputView = new InputView();
-    const carNamesInput = await inputView.getCarNames();
+    const carNamesInput = await this.getCarNames();
     const carNames = carNamesInput.split(',');
     const cars = this.createCars(carNames);
-    const tryCount = await inputView.getTryCount();
+    const tryCount = await this.getTryCount();
     this.runRace(cars, tryCount);
+    const winners = this.findWinners(cars);
     this.outputView.printWinners(winners);
   }
 
@@ -49,5 +50,19 @@ export class Controller {
 
   createCars(carNames) {
     return carNames.map((name) => new Car(name, 0));
+  }
+
+  async getCarNames() {
+    const carNames = await this.inputView.getInput(
+      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+    );
+
+    return carNames;
+  }
+
+  async getTryCount() {
+    const tryCount = await this.inputView.getInput('시도할 횟수는 몇 회인가요?\n');
+
+    return tryCount;
   }
 }
