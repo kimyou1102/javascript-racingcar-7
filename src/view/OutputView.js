@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OUTPUT_MESSAGE } from '../constant/constant';
+import { OUTPUT_MESSAGE } from '../constant/constant.js';
 
 export class OutputView {
   printMoveForward(carName, step) {

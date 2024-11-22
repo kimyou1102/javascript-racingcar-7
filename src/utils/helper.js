@@ -1,5 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
-import { ERROR_PREFIX } from '../constant/constant';
+import { ERROR_PREFIX } from '../constant/constant.js';
 
 export const getRandomNumber = () => {
   return Random.pickNumberInRange(0, 9);

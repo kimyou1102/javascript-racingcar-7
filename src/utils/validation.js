@@ -1,5 +1,5 @@
-import { createError } from './helper';
-import { ERROR_MESSAGE } from '../constant/constant';
+import { createError } from './helper.js';
+import { ERROR_MESSAGE } from '../constant/constant.js';
 
 export const validateCarNames = (carNamesInput) => {
   validateSpecialSymbol(carNamesInput);
