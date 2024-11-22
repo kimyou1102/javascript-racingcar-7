@@ -10,3 +10,15 @@ export const OUTPUT_MESSAGE = {
   WINNERS: '최종 우승자 : ',
   STEP_SYMBOL: '-',
 };
+
+export const ERROR_MESSAGE = {
+  CAR_NAMES: {
+    SPECIAL_SYMBOL: '쉼표와 문자를 제외한 것은 입력할 수 없습니다.',
+    NAME_LENGTH: '자동차의 이름은 1글자 이상이어 합니다.',
+    DUPLICATION: '중복된 자동차 이름은 입력할 수 없습니다.',
+  },
+  TRY_COUNT: {
+    NOT_A_NUMBER: '숫자가 아닌 것을 입력할 수 없습니다.',
+    INVALID_RANGE: '시도할 횟수는 1회 이상으로 입력해야 합니다.',
+  },
+};
