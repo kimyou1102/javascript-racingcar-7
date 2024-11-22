@@ -2,6 +2,7 @@ import { Car } from '../model/Car.js';
 import { InputView } from '../view/InputView.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { OutputView } from '../view/OutputView.js';
+import { validateCarNames } from '../utils/validation.js';
 
 export class Controller {
   constructor() {
@@ -57,6 +58,7 @@ export class Controller {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
 
+    validateCarNames(carNames);
     return carNames;
   }
 
