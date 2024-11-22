@@ -21,7 +21,6 @@ export const validateTryCount = (tryCountInput) => {
 
 const validateSpecialSymbol = (carNamesInput) => {
   const regex = /[^,ㄱ-ㅎ가-힣a-zA-Z]/;
-  console.log('dddd::', carNamesInput, regex.test(carNamesInput));
   if (regex.test(carNamesInput)) {
     createError(ERROR_MESSAGE.CAR_NAMES.SPECIAL_SYMBOL);
   }
