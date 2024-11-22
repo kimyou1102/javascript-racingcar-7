@@ -2,8 +2,17 @@ import { Console } from '@woowacourse/mission-utils';
 import { OUTPUT_MESSAGE } from '../constant/constant.js';
 
 export class OutputView {
-  printMoveForward(carName, step) {
-    Console.print(`${carName} : ${OUTPUT_MESSAGE.STEP_SYMBOL.repeat(step)}`);
+  printRound(gameResult) {
+    gameResult.forEach(({ name, step }) => {
+      Console.print(`${name} : ${OUTPUT_MESSAGE.STEP_SYMBOL.repeat(step)}`);
+    });
+  }
+
+  printRacing(gameResults) {
+    gameResults.forEach((gameResult) => {
+      this.printRound(gameResult);
+      Console.print('');
+    });
   }
 
   printWinners(winners) {

@@ -1,9 +1,9 @@
 import { Car } from '../model/Car.js';
 import { InputView } from '../view/InputView.js';
-import { getRandomNumber } from '../utils/helper.js';
 import { OutputView } from '../view/OutputView.js';
 import { validateCarNames, validateTryCount } from '../utils/validation.js';
 import { INPUT_MESSAGE } from '../constant/constant.js';
+import { CarRacing } from '../model/CarRacing.js';
 
 export class Controller {
   constructor() {
@@ -16,38 +16,11 @@ export class Controller {
     const carNames = carNamesInput.split(',');
     const cars = this.createCars(carNames);
     const tryCount = await this.getTryCount();
-    this.runRace(cars, tryCount);
-    const winners = this.findWinners(cars);
+    const carRacing = new CarRacing(cars);
+    const racingResult = carRacing.runRace(tryCount);
+    this.outputView.printRacing(racingResult);
+    const winners = carRacing.findWinners();
     this.outputView.printWinners(winners);
-  }
-
-  findWinners(cars) {
-    const carsStep = cars.map((car) => car.getStep());
-    const max = Math.max(...carsStep);
-    const maxCars = cars.filter((car) => car.getStep() === max);
-
-    return maxCars.map((car) => car.getName());
-  }
-
-  runRace(cars, tryCount) {
-    for (let i = 0; i < tryCount; i++) {
-      this.runRaceRound(cars);
-    }
-  }
-
-  runRaceRound(cars) {
-    cars.forEach((car) => {
-      if (this.canMoveForward()) car.move();
-      this.outputView.printMoveForward(car.getName(), car.getStep());
-    });
-    this.outputView.printEmpty();
-  }
-
-  canMoveForward() {
-    if (getRandomNumber() >= 4) {
-      return true;
-    }
-    return false;
   }
 
   createCars(carNames) {
@@ -56,8 +29,8 @@ export class Controller {
 
   async getCarNames() {
     const carNames = await this.inputView.getInput(INPUT_MESSAGE.CAR_NAMES);
-
     validateCarNames(carNames);
+
     return carNames;
   }
 
