@@ -13,6 +13,30 @@ export class Controller {
     const carNamesInput = await inputView.getCarNames();
     const carNames = carNamesInput.split(',');
     const cars = this.createCars(carNames);
+    const tryCount = await inputView.getTryCount();
+
+    this.runRace(cars, tryCount);
+  }
+
+  runRace(cars, tryCount) {
+    for (let i = 0; i < tryCount; i++) {
+      this.runRaceRound(cars);
+    }
+  }
+
+  runRaceRound(cars) {
+    cars.forEach((car) => {
+      if (this.canMoveForward()) car.move();
+      this.outputView.printMoveForward(car.getName(), car.getStep());
+    });
+    this.outputView.printEmpty();
+  }
+
+  canMoveForward() {
+    if (getRandomNumber() >= 4) {
+      return true;
+    }
+    return false;
   }
 
   createCars(carNames) {
