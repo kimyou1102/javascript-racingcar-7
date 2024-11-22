@@ -3,6 +3,7 @@ import { InputView } from '../view/InputView.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { OutputView } from '../view/OutputView.js';
 import { validateCarNames, validateTryCount } from '../utils/validation.js';
+import { INPUT_MESSAGE } from '../constant/constant.js';
 
 export class Controller {
   constructor() {
@@ -54,16 +55,14 @@ export class Controller {
   }
 
   async getCarNames() {
-    const carNames = await this.inputView.getInput(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
+    const carNames = await this.inputView.getInput(INPUT_MESSAGE.CAR_NAMES);
 
     validateCarNames(carNames);
     return carNames;
   }
 
   async getTryCount() {
-    const tryCount = await this.inputView.getInput('시도할 횟수는 몇 회인가요?\n');
+    const tryCount = await this.inputView.getInput(INPUT_MESSAGE.TRY_COUNT);
     validateTryCount(tryCount);
 
     return tryCount;

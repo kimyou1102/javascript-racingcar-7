@@ -1,12 +1,13 @@
 import { Console } from '@woowacourse/mission-utils';
+import { OUTPUT_MESSAGE } from '../constant/constant';
 
 export class OutputView {
   printMoveForward(carName, step) {
-    Console.print(`${carName} : ${'-'.repeat(step)}`);
+    Console.print(`${carName} : ${OUTPUT_MESSAGE.STEP_SYMBOL.repeat(step)}`);
   }
 
   printWinners(winners) {
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(`${OUTPUT_MESSAGE.WINNERS}${winners.join(', ')}`);
   }
 
   printEmpty() {
