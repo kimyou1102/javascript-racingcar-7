@@ -1,4 +1,4 @@
-import { Car } from '../src/model/Car';
+import { Car } from '../src/model/Car.js';
 
 describe('자동차 클래스 테스트', () => {
   test('이름과 전진 정도를 가질 수 있다.', () => {
